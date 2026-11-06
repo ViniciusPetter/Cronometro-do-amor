@@ -1,8 +1,19 @@
 {
   "password": "amor",
-  "targetDate": "2026-11-06T18:00:00",
-  "title": "Nosso Próximo Final de Semana ❤️",
-  "subheading": "Falta muito pouco para a gente se reencontrar!",
-  "gateTitle": "Área Secreta do Vini & Luh ❤️",
-  "gateSubtitle": "Digite a senha secreta para acessar!"
+  "targetDate": "2026-12-25T18:00:00",
+  "startDate": "2022-06-12T20:00:00",
+  "photoUrl": "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80",
+  "coupleNames": "Maria & João ❤️",
+  "photoCaption": "Cada momento ao seu lado se transforma na minha melhor lembrança!",
+  "title": "Contagem Regressiva para Nosso Reencontro ❤️",
+  "subheading": "Falta muito pouco para a gente se abraçar bem forte!",
+  "gateTitle": "Área Secreta do Casal ❤️",
+  "gateSubtitle": "Digite a senha secreta para ver quanto tempo falta para o nosso próximo abraço!",
+  "gatePlaceholder": "Digite nossa senha...",
+  "gateButtonText": "Desbloquear Nosso Espaço",
+  "gateErrorMessage": "Ops! Senha incorreta, tente novamente com carinho 💕",
+  "finishedTitle": "Chegou o Nosso Dia! 🎉 ❤️",
+  "finishedMessage": "Finalmente o tempo de espera acabou! Vem logo me dar aquele abraço bem gostoso!",
+  "togetherTitle": "Nossa História de Amor",
+  "scrollHint": "Ver Nossa Foto & Tempo Juntos"
 }

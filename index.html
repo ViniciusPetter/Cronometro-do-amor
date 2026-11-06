@@ -145,10 +145,11 @@
                 <!-- Mensagem de Erro de Senha -->
                 <div id="password-error" class="hidden text-xs text-rose-600 font-semibold flex items-center justify-center gap-1">
                     <i class="fa-solid fa-circle-exclamation"></i>
-                    <span>Senha incorreta! Tente novamente com carinho 💕</span>
+                    <span id="gate-error-text">Senha incorreta! Tente novamente com carinho 💕</span>
                 </div>
 
                 <button 
+                    id="gate-button-text"
                     type="submit" 
                     class="w-full py-3.5 px-6 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-semibold rounded-2xl shadow-lg shadow-rose-300/50 transition duration-300 transform active:scale-95"
                 >
@@ -239,10 +240,10 @@
             </div>
 
             <!-- MENSAGEM FINAL (Exibida quando a contagem chega a zero) -->
-            <div id="finished-message" class="hidden bg-rose-50 border-2 border-rose-300 p-6 rounded-2xl text-rose-700 animate-bounce mb-6">
+            <div id="finished-message-card" class="hidden bg-rose-50/90 border-2 border-rose-300 p-6 rounded-2xl text-rose-700 animate-bounce mb-6 shadow-md">
                 <i class="fa-solid fa-heart-circle-check text-4xl text-rose-500 mb-2"></i>
-                <h2 class="text-2xl font-bold font-serif-title mb-1">Chegou o Grande Momento! 🎉 ❤️</h2>
-                <p class="text-sm font-medium">Finalmente chegou a hora de nos encontrarmos! Corre para dar aquele abraço bem apertado!</p>
+                <h2 id="finished-title" class="text-2xl font-bold font-serif-title mb-1">Chegou o Grande Momento! 🎉 ❤️</h2>
+                <p id="finished-message-body" class="text-sm font-medium">Finalmente chegou a hora de nos encontrarmos! Corre para dar aquele abraço bem apertado!</p>
             </div>
 
             <!-- Rodapé informativo com a Data Final -->
@@ -254,8 +255,16 @@
                 <span id="target-date-formatted" class="font-bold text-gray-800">Carregando...</span>
             </div>
 
+            <!-- BOTÃO PARA ROLAR SUAVE ATÉ A SEÇÃO DA FOTO E NOSSA HISTÓRIA -->
+            <div class="mt-8 pt-4 border-t border-rose-200/50">
+                <a href="#couple-story-section" class="inline-flex items-center gap-2 text-xs font-semibold text-rose-600 hover:text-rose-800 transition-all transform hover:translate-y-1">
+                    <span id="scroll-hint-text">Nossa História & Foto</span>
+                    <i class="fa-solid fa-chevron-down text-[10px] animate-bounce"></i>
+                </a>
+            </div>
+
             <!-- Botão de Sair/Trancar -->
-            <div class="mt-6">
+            <div class="mt-4">
                 <button 
                     onclick="lockApp()" 
                     class="text-xs text-gray-400 hover:text-rose-600 transition-colors inline-flex items-center gap-1"
@@ -266,39 +275,92 @@
 
         </section>
 
+        <!-- ========================================== -->
+        <!-- 3. SEÇÃO DO CASAL & TEMPO JUNTOS          -->
+        <!-- ========================================== -->
+        <section id="couple-story-section" class="hidden glass-card rounded-3xl p-6 sm:p-10 text-center transition-all duration-500 mt-8">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-100/80 text-rose-600 text-xs font-semibold mb-4">
+                <i class="fa-solid fa-infinity text-rose-500"></i>
+                <span id="together-badge-text">Nossa História de Amor</span>
+            </div>
+
+            <h2 id="couple-names" class="font-serif-title text-2xl sm:text-3xl font-bold text-gray-800 mb-6">
+                Nós Dois ❤️
+            </h2>
+
+            <!-- FOTO DO CASAL COM MOLDURA ELEGANTE -->
+            <div class="relative max-w-md mx-auto mb-6 group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-rose-400 to-pink-500 rounded-3xl blur opacity-40 group-hover:opacity-75 transition duration-500"></div>
+                <div class="relative bg-white p-2 sm:p-3 rounded-2xl shadow-xl overflow-hidden">
+                    <img 
+                        id="couple-photo" 
+                        src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80" 
+                        alt="Foto do Casal" 
+                        class="w-full h-64 sm:h-80 object-cover rounded-xl transition duration-500 transform group-hover:scale-[1.02]"
+                        onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80';"
+                    />
+                </div>
+            </div>
+
+            <!-- LEGENDA DA FOTO -->
+            <p id="photo-caption" class="text-sm italic text-gray-600 mb-8 max-w-sm mx-auto">
+                "Cada dia ao seu lado é o meu capítulo favorito."
+            </p>
+
+            <!-- TÍTULO TEMPO JUNTOS -->
+            <div class="border-t border-rose-200/60 pt-6 mb-4">
+                <h3 class="text-xs uppercase tracking-wider text-rose-500 font-bold mb-1">
+                    Juntos Há
+                </h3>
+                <p id="start-date-formatted" class="text-xs text-gray-500">Desde --/--/----</p>
+            </div>
+
+            <!-- CONTADOR PROGRESSIVO DE TEMPO DE RELACIONAMENTO -->
+            <div id="together-timer-display" class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 max-w-md mx-auto mb-6">
+                <div class="bg-white/70 p-3 rounded-2xl border border-rose-100 shadow-sm">
+                    <div id="tog-years-months" class="text-lg sm:text-2xl font-extrabold text-rose-600 font-mono">0a 0m</div>
+                    <div class="text-[10px] sm:text-xs font-semibold text-gray-500 uppercase mt-0.5">Anos e Meses</div>
+                </div>
+                <div class="bg-white/70 p-3 rounded-2xl border border-rose-100 shadow-sm">
+                    <div id="tog-days" class="text-lg sm:text-2xl font-extrabold text-rose-600 font-mono">0</div>
+                    <div class="text-[10px] sm:text-xs font-semibold text-gray-500 uppercase mt-0.5">Dias</div>
+                </div>
+                <div class="bg-white/70 p-3 col-span-2 sm:col-span-1 rounded-2xl border border-rose-100 shadow-sm">
+                    <div id="tog-hms" class="text-sm sm:text-base font-extrabold text-rose-600 font-mono">00:00:00</div>
+                    <div class="text-[10px] sm:text-xs font-semibold text-gray-500 uppercase mt-0.5">Horas : Min : Seg</div>
+                </div>
+            </div>
+
+            <!-- BOTÃO VOLTAR PARA O CRONÔMETRO -->
+            <a href="#countdown-screen" class="inline-flex items-center gap-1.5 text-xs font-semibold text-rose-500 hover:text-rose-700 transition-colors">
+                <i class="fa-solid fa-chevron-up text-[10px]"></i>
+                Voltar ao Cronômetro
+            </a>
+        </section>
+
     </main>
 
     <!-- INSTRUÇÕES PARA ARQUIVO CONFIG.JSON (Comentário Explicativo no JS) -->
     <script>
-        /*
-        =====================================================================================
-        COMO CONFIGURAR O ARQUIVO 'config.json' PARA O GITHUB PAGES:
-        =====================================================================================
-        Você pode criar um arquivo chamado 'config.json' no mesmo repositório no GitHub Pages
-        ao lado do 'index.html' com a seguinte estrutura de exemplo:
-
-        {
-          "password": "amor",
-          "targetDate": "2026-12-25T18:00:00",
-          "title": "Nosso Reencontro Inesquecível ❤️",
-          "subheading": "Falta muito pouco para estarmos juntos de novo!",
-          "gateTitle": "Espaço Reservado do Casal 💕",
-          "gateSubtitle": "Insira a senha especial para liberar nosso cronômetro."
-        }
-
-        Caso o arquivo 'config.json' não exista ou falhe no carregamento, o script
-        utilizará automaticamente as configurações padrão (DEFAULT_CONFIG) abaixo!
-        =====================================================================================
-        */
-
-        // Configuração Padrão (Fallback caso config.json não exista)
+        // Configuração Padrão em Português (Fallback caso config.json não exista)
         const DEFAULT_CONFIG = {
-            password: "love",
+            password: "amor",
             targetDate: "2026-12-25T18:00:00",
+            startDate: "2022-06-12T20:00:00",
+            photoUrl: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80",
+            coupleNames: "Amor & Vida ❤️",
+            photoCaption: "Cada segundo com você faz tudo valer a pena.",
             title: "Contagem Regressiva para Nosso Encontro ❤️",
             subheading: "Falta pouco para a gente se abraçar e matar todas as saudades!",
             gateTitle: "Área Secreta do Casal ❤️",
-            gateSubtitle: "Digite a senha secreta para ver quanto tempo falta para o nosso próximo abraço!"
+            gateSubtitle: "Digite a senha secreta para ver quanto tempo falta para o nosso próximo abraço!",
+            gatePlaceholder: "Sua senha de amor...",
+            gateButtonText: "Entrar no Nosso Espaço",
+            gateErrorMessage: "Senha incorreta! Tente novamente com carinho 💕",
+            finishedTitle: "Chegou o Grande Momento! 🎉 ❤️",
+            finishedMessage: "Finalmente chegou a hora de nos encontrarmos! Corre para dar aquele abraço bem apertado!",
+            togetherTitle: "Nossa História de Amor",
+            scrollHint: "Nossa História & Foto"
         };
 
         // Estado Global da Aplicação
@@ -323,7 +385,7 @@
                     appConfig = { ...DEFAULT_CONFIG, ...jsonConfig };
                     console.log('✅ Configuração carregada do config.json com sucesso!');
                 } else {
-                    console.warn('⚠️ config.json não encontrado. Utilizando configuração padrão.');
+                    console.warn('⚠️ config.json não encontrado. Utilizando configuração padrão em Português.');
                 }
             } catch (error) {
                 console.log('ℹ️ Carregando modo local/default (config.json ausente).');
@@ -332,10 +394,27 @@
             // Aplica os textos dinâmicos na interface
             document.getElementById('gate-title').innerText = appConfig.gateTitle;
             document.getElementById('gate-subtitle').innerText = appConfig.gateSubtitle;
+            document.getElementById('password-input').placeholder = appConfig.gatePlaceholder;
+            document.getElementById('gate-button-text').innerHTML = `${appConfig.gateButtonText} <i class="fa-solid fa-key ml-2 text-xs"></i>`;
+            document.getElementById('gate-error-text').innerText = appConfig.gateErrorMessage;
+
             document.getElementById('main-title').innerText = appConfig.title;
             document.getElementById('main-subheading').innerText = appConfig.subheading;
 
-            // Formata a data de destino para exibição legível
+            document.getElementById('finished-title').innerText = appConfig.finishedTitle;
+            document.getElementById('finished-message-body').innerText = appConfig.finishedMessage;
+
+            document.getElementById('scroll-hint-text').innerText = appConfig.scrollHint;
+            document.getElementById('together-badge-text').innerText = appConfig.togetherTitle;
+
+            // Dados da Seção do Casal
+            document.getElementById('couple-names').innerText = appConfig.coupleNames || "Nós Dois ❤️";
+            document.getElementById('photo-caption').innerText = appConfig.photoCaption || "";
+            if (appConfig.photoUrl) {
+                document.getElementById('couple-photo').src = appConfig.photoUrl;
+            }
+
+            // Formata a data de destino
             const target = new Date(appConfig.targetDate);
             if (!isNaN(target.getTime())) {
                 const options = { 
@@ -348,6 +427,13 @@
                 document.getElementById('target-date-formatted').innerText = target.toLocaleDateString('pt-BR', options);
             } else {
                 document.getElementById('target-date-formatted').innerText = appConfig.targetDate;
+            }
+
+            // Formata a data de início de namoro
+            const start = new Date(appConfig.startDate);
+            if (!isNaN(start.getTime())) {
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                document.getElementById('start-date-formatted').innerText = `Desde ${start.toLocaleDateString('pt-BR', options)}`;
             }
         }
 
@@ -392,10 +478,11 @@
             }
         }
 
-        // Exibe a tela do Cronômetro e inicia a contagem
+        // Exibe as telas do Cronômetro + História do Casal
         function showCountdownScreen() {
             document.getElementById('password-screen').classList.add('hidden');
             document.getElementById('countdown-screen').classList.remove('hidden');
+            document.getElementById('couple-story-section').classList.remove('hidden');
             
             startCountdown();
         }
@@ -406,6 +493,7 @@
             clearInterval(countdownInterval);
             document.getElementById('password-input').value = '';
             document.getElementById('countdown-screen').classList.add('hidden');
+            document.getElementById('couple-story-section').classList.add('hidden');
             document.getElementById('password-screen').classList.remove('hidden');
         }
 
@@ -437,7 +525,7 @@
             updateTimer();
         }
 
-        // Lógica Principal da Contagem Regressiva
+        // Lógica Principal da Contagem Regressiva e da Contagem Progressiva
         function startCountdown() {
             updateTimer(); // Executa de imediato
             if (countdownInterval) clearInterval(countdownInterval);
@@ -445,61 +533,83 @@
         }
 
         function updateTimer() {
-            const targetTime = new Date(appConfig.targetDate).getTime();
             const currentTime = new Date().getTime();
-            const diff = targetTime - currentTime;
 
-            if (diff <= 0) {
-                // Chegou ao fim!
+            // --- 1. CRONÔMETRO REGRESSIVO (Para o encontro) ---
+            const targetTime = new Date(appConfig.targetDate).getTime();
+            const diffTarget = targetTime - currentTime;
+
+            if (diffTarget <= 0) {
                 handleCountdownZero();
-                return;
+            } else {
+                const secondsTotal = Math.floor(diffTarget / 1000);
+                const minutesTotal = Math.floor(secondsTotal / 60);
+                const hoursTotal = Math.floor(minutesTotal / 60);
+
+                const days = Math.floor(hoursTotal / 24);
+                const hoursRem = hoursTotal % 24;
+                const minutesRem = minutesTotal % 60;
+                const secondsRem = secondsTotal % 60;
+
+                // Atualiza telas da contagem regressiva
+                document.getElementById('val-days').innerText = String(days).padStart(2, '0');
+                document.getElementById('val-hours').innerText = String(hoursRem).padStart(2, '0');
+                document.getElementById('val-minutes').innerText = String(minutesRem).padStart(2, '0');
+                document.getElementById('val-seconds').innerText = String(secondsRem).padStart(2, '0');
+
+                document.getElementById('val-total-hours').innerText = `${hoursTotal.toLocaleString('pt-BR')} h`;
+                document.getElementById('val-total-hours-sub').innerText = `${minutesRem}m ${secondsRem}s restantes`;
+
+                document.getElementById('val-total-minutes').innerText = `${minutesTotal.toLocaleString('pt-BR')} min`;
+                document.getElementById('val-total-minutes-sub').innerText = `${secondsRem}s restantes`;
+
+                document.getElementById('val-total-seconds').innerText = `${secondsTotal.toLocaleString('pt-BR')} s`;
             }
 
-            // Cálculos de tempo
-            const secondsTotal = Math.floor(diff / 1000);
-            const minutesTotal = Math.floor(secondsTotal / 60);
-            const hoursTotal = Math.floor(minutesTotal / 60);
+            // --- 2. CONTADOR PROGRESSIVO (Há quanto tempo estão juntos) ---
+            const startTime = new Date(appConfig.startDate).getTime();
+            if (!isNaN(startTime) && currentTime >= startTime) {
+                const diffStart = currentTime - startTime;
 
-            const days = Math.floor(hoursTotal / 24);
-            const hoursRem = hoursTotal % 24;
-            const minutesRem = minutesTotal % 60;
-            const secondsRem = secondsTotal % 60;
+                const startObj = new Date(appConfig.startDate);
+                const nowObj = new Date();
 
-            // 1. Atualiza Visão Completa (Dias, Horas, Min, Seg)
-            document.getElementById('val-days').innerText = String(days).padStart(2, '0');
-            document.getElementById('val-hours').innerText = String(hoursRem).padStart(2, '0');
-            document.getElementById('val-minutes').innerText = String(minutesRem).padStart(2, '0');
-            document.getElementById('val-seconds').innerText = String(secondsRem).padStart(2, '0');
+                let years = nowObj.getFullYear() - startObj.getFullYear();
+                let months = nowObj.getMonth() - startObj.getMonth();
+                
+                if (months < 0) {
+                    years--;
+                    months += 12;
+                }
 
-            // 2. Atualiza Visão Total em Horas
-            document.getElementById('val-total-hours').innerText = `${hoursTotal.toLocaleString('pt-BR')} h`;
-            document.getElementById('val-total-hours-sub').innerText = `${minutesRem}m ${secondsRem}s restantes`;
+                if (nowObj.getDate() < startObj.getDate()) {
+                    months--;
+                    if (months < 0) {
+                        years--;
+                        months += 12;
+                    }
+                }
 
-            // 3. Atualiza Visão Total em Minutos
-            document.getElementById('val-total-minutes').innerText = `${minutesTotal.toLocaleString('pt-BR')} min`;
-            document.getElementById('val-total-minutes-sub').innerText = `${secondsRem}s restantes`;
+                const totalDaysTogether = Math.floor(diffStart / (1000 * 60 * 60 * 24));
+                const secDiff = Math.floor(diffStart / 1000);
+                const hTogether = Math.floor((secDiff % (3600 * 24)) / 3600);
+                const mTogether = Math.floor((secDiff % 3600) / 60);
+                const sTogether = secDiff % 60;
 
-            // 4. Atualiza Visão Total em Segundos
-            document.getElementById('val-total-seconds').innerText = `${secondsTotal.toLocaleString('pt-BR')} s`;
+                document.getElementById('tog-years-months').innerText = `${years}a ${months}m`;
+                document.getElementById('tog-days').innerText = totalDaysTogether.toLocaleString('pt-BR');
+                document.getElementById('tog-hms').innerText = 
+                    `${String(hTogether).padStart(2, '0')}:${String(mTogether).padStart(2, '0')}:${String(sTogether).padStart(2, '0')}`;
+            }
         }
 
         // Executa comemoração quando a contagem encerra
         function handleCountdownZero() {
-            if (countdownInterval) clearInterval(countdownInterval);
+            // Esconde display e exibe o card festivo final
+            document.getElementById('timer-display-container').classList.add('hidden');
+            document.getElementById('finished-message-card').classList.remove('hidden');
 
-            // Zera todos os valores
-            document.getElementById('val-days').innerText = '00';
-            document.getElementById('val-hours').innerText = '00';
-            document.getElementById('val-minutes').innerText = '00';
-            document.getElementById('val-seconds').innerText = '00';
-            document.getElementById('val-total-hours').innerText = '0 h';
-            document.getElementById('val-total-minutes').innerText = '0 min';
-            document.getElementById('val-total-seconds').innerText = '0 s';
-
-            // Mostra mensagem festiva
-            document.getElementById('finished-message').classList.remove('hidden');
-
-            // Dispara Confetes (Se a biblioteca tiver carregado)
+            // Dispara Confetes
             if (!hasReachedZero && typeof confetti === 'function') {
                 hasReachedZero = true;
                 triggerLoveConfetti();
